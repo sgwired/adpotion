@@ -6,10 +6,10 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] 'mysecretkey'
+app.config['SECRET_KEY'] = 'mysecretkey'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'adoptdb.sqlite')
 app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -46,15 +46,15 @@ def add_pup():
 
     return redirect(url_for('list_pup'))
 
-return render_template('add_html', form=form)
+  return render_template('add.html', form=form)
 
-@app.rotue('/list')
+@app.route('/list')
 def list_pup():
 
   puppies = Puppy.query.all()
   return render_template('list.html', puppies=puppies)
 
-@app.route('/delete', methods['GET', 'POST'])
+@app.route('/delete', methods =['GET', 'POST'])
 def del_pup():
 
   form = DelForm()
