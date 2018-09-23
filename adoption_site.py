@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'adoptdb.sqlite')
-app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'adoptdb.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 Migrate(app, db)
@@ -27,7 +27,7 @@ class Puppy(db.Model):
   def __repr__(self):
     return f"Puppy name: {self.name}"
 
-## View Functions ###
+## VIEWS Functions - HAVE FORMS ###
 
 @app.route('/')
 def index():
